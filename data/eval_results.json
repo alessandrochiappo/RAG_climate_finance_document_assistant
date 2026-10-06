@@ -1,0 +1,337 @@
+[
+  {
+    "question": "What is the benefit-cost ratio of this project?",
+    "filters": {
+      "ref": "FP171"
+    },
+    "expected_pages": [
+      "FP171:85",
+      "FP171:68"
+    ],
+    "expected_refs": [],
+    "expected_text": [
+      "5.7"
+    ],
+    "should_refuse": false,
+    "type": "exact figure",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The project is estimated to generate a benefit-cost ratio of 5.7:1 [FP171, p.68]. This indicates that each USD 10 invested will translate to benefits with a value of USD 57 [FP171, p.68].",
+    "retrieved": [
+      "FP171:68",
+      "FP171:85",
+      "FP171:84",
+      "FP171:77",
+      "FP171:78",
+      "FP171:6"
+    ],
+    "refs_seen": [
+      "FP171"
+    ],
+    "recall": 1.0,
+    "rr": 1.0,
+    "rank": 1,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [
+      "FP171:68"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "Why were early warning systems chosen over structural flood defences?",
+    "filters": {
+      "ref": "FP272"
+    },
+    "expected_pages": [
+      "FP272:11",
+      "FP272:15"
+    ],
+    "expected_refs": [],
+    "expected_text": [],
+    "should_refuse": false,
+    "type": "reasoning / false premise",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The passages do not state that early warning systems were chosen *over* structural flood defences. Instead, the project combines both approaches alongside manual lake lowering: the project establishes and implements early warning systems to reduce damages and prevent loss of life while simultaneously using structural measures\u2014such as manually lowering glacial lakes, constructing check dams, flood walls, gabions, and revetments\u2014and nature-based solutions to mitigate residual flood impacts [FP272, p.11, p.15].",
+    "retrieved": [
+      "FP272:49",
+      "FP272:15",
+      "FP272:92",
+      "FP272:11",
+      "FP272:16",
+      "FP272:61"
+    ],
+    "refs_seen": [
+      "FP272"
+    ],
+    "recall": 1.0,
+    "rr": 0.5,
+    "rank": 2,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [
+      "FP272:11",
+      "FP272:15"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "What carbon price assumption does FP154 use in its economic analysis?",
+    "filters": {
+      "ref": "FP154"
+    },
+    "expected_pages": [
+      "FP154:70",
+      "FP154:76"
+    ],
+    "expected_refs": [],
+    "expected_text": [
+      "36.30"
+    ],
+    "should_refuse": false,
+    "type": "vocabulary mismatch",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "For its economic and financial analysis, ASDIP uses the Asian Development Bank (ADB) shadow price for CO2, which is $36.30 per ton of CO2 or its equivalent in 2016 prices for 2016 emissions, increased by 2% annually in real terms [FP154, p.70]. For simplicity, the project also uses a constant value calculated by evaluating the ADB shadow price for greenhouse gas emission reductions in 2020 at $39.62 per tCO2e [FP154, p.70]. Additionally, when discussing the value of sequestered carbon relative to investment costs, the passages note a current price assumption of $10-15 per tCO2e, which is described as being below the social cost of carbon [FP154, p.76].",
+    "retrieved": [
+      "FP154:70",
+      "FP154:76",
+      "FP154:103",
+      "FP154:100",
+      "FP154:79",
+      "FP154:80"
+    ],
+    "refs_seen": [
+      "FP154"
+    ],
+    "recall": 1.0,
+    "rr": 1.0,
+    "rank": 1,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [
+      "FP154:70",
+      "FP154:76"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "What are the four glacial lakes targeted for lowering?",
+    "filters": {
+      "ref": "FP272"
+    },
+    "expected_pages": [],
+    "expected_refs": [],
+    "expected_text": [
+      "Thulagi",
+      "Lumding"
+    ],
+    "should_refuse": false,
+    "type": "named entities",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The four glacial lakes targeted for lowering are Thulagi, Lower Barun, Lumding Tsho, and Hongu 2 [FP272, p.25].",
+    "retrieved": [
+      "FP272:25",
+      "FP272:26",
+      "FP272:73",
+      "FP272:27",
+      "FP272:84",
+      "FP272:49"
+    ],
+    "refs_seen": [
+      "FP272"
+    ],
+    "recall": 0.0,
+    "rr": 0.0,
+    "rank": null,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [
+      "FP272:25"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "How do the Nepal projects differ in their approach to flood risk?",
+    "filters": {
+      "country": "Nepal"
+    },
+    "expected_pages": [],
+    "expected_refs": [
+      "FP272",
+      "FP118",
+      "FP131"
+    ],
+    "expected_text": [],
+    "should_refuse": false,
+    "type": "cross-document",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The provided passages do not compare the approaches to flood risk across the different Nepal projects.",
+    "retrieved": [
+      "FP272:20",
+      "FP272:14",
+      "FP272:11",
+      "FP272:15",
+      "FP118:77",
+      "FP131:20"
+    ],
+    "refs_seen": [
+      "FP118",
+      "FP131",
+      "FP272"
+    ],
+    "recall": 0.0,
+    "rr": 0.0,
+    "rank": null,
+    "coverage": 1.0,
+    "missing_refs": [],
+    "cited": [],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "What adaptation measures do the Tajikistan projects use?",
+    "filters": {
+      "country": "Tajikistan"
+    },
+    "expected_pages": [],
+    "expected_refs": [
+      "FP040",
+      "FP233",
+      "FP067",
+      "FP075"
+    ],
+    "expected_text": [],
+    "should_refuse": false,
+    "type": "filtered multi-doc",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The Tajikistan projects implement a wide range of adaptation measures across agriculture, water management, infrastructure, and institutional capacity:\n\n* **Agricultural and Livelihood Adaptation:** The projects introduce solar energy applications (such as solar dryers, greenhouses, and photovoltaic panels), promote organic farming, protect agro-biodiversity and genetic resources (including local cultivars and wild congeners), and implement agroforestry alongside measures for soil erosion control and fertility improvement [FP067, p.54]. They also diversify livelihoods, improve market access, and build light physical and natural assets to enhance farm productivity and food security [FP067, p.45]. \n* **Water Resources and Hydrometeorology:** Interventions include new methods and planning for water resources management [FP067, p.54], strengthening the institutional development of the State Agency for Hydrometeorology (Hydromet) [FP075, p.4], and providing extended weather forecasts directly to rural communities [FP067, p.45].\n* **Infrastructure and Energy:** The projects execute climate-resilient upgrades for critical infrastructure\u2014specifically in the hydropower sector\u2014by incorporating practical climate resilience measures into energy sector management, supporting transboundary coordination of cascading hydropower plants, and utilizing an OECD-partnered twinning model for institutional capacity building [FP040, p.31].\n* **Policy and Institutional Systems:** Activities enhance the interface between policy and local institutions, integrate climate change adaptation and disaster risk reduction into planning, produce regular policy briefs for the Ministry of Agriculture and the Committee for Environmental Protection (CEP), and disseminate knowledge and experience on climate change at various levels [FP067, p.54, p.45].",
+    "retrieved": [
+      "FP067:54",
+      "FP233:82",
+      "FP067:39",
+      "FP067:45",
+      "FP040:31",
+      "FP075:4"
+    ],
+    "refs_seen": [
+      "FP040",
+      "FP067",
+      "FP075",
+      "FP233"
+    ],
+    "recall": 0.0,
+    "rr": 0.0,
+    "rank": null,
+    "coverage": 1.0,
+    "missing_refs": [],
+    "cited": [
+      "FP040:31",
+      "FP067:45",
+      "FP067:54",
+      "FP075:4"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "How do they stop water running out during the dry season?",
+    "filters": {},
+    "expected_pages": [],
+    "expected_refs": [],
+    "expected_text": [],
+    "should_refuse": false,
+    "type": "obliquely worded (read-only)",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The passages identify several measures and proposed strategies to manage dry-season water deficits and water scarcity:\n\n* In Nepal's Gandaki River Basin, projected future evapotranspirative demands and drying water resources indicate a need to invest in measures for moisture storage [FP131, p.11].\n* In Thailand's Chao Phraya River system, feasibility studies recommend increasing water storage volume within areas during the late rainy season and the beginning of the dry season to allow sufficient water to irrigate during dry periods [FP170, p.13]. This includes dredging waterways and constructing additional water regulators, improving water diversion capabilities from the Yom and Nan basins, and upgrading 13 critical schemes in the Yom-Nan area [FP170, p.13].\n* In Vietnam's Central Highlands and South-Central Coast regions, adaptation solutions include supply-side interventions to improve agricultural water security through water storage for rainfed farmers, alongside large-scale and supplementary irrigation [FP125, p.20].",
+    "retrieved": [
+      "FP040:39",
+      "FP125:20",
+      "FP109:12",
+      "FP131:11",
+      "FP170:13",
+      "FP118:11"
+    ],
+    "refs_seen": [
+      "FP040",
+      "FP109",
+      "FP118",
+      "FP125",
+      "FP131",
+      "FP170"
+    ],
+    "recall": 0.0,
+    "rr": 0.0,
+    "rank": null,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [
+      "FP125:20",
+      "FP131:11",
+      "FP170:13"
+    ],
+    "invented": [],
+    "off_target": [],
+    "refused": false,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "filters": {},
+    "expected_pages": [],
+    "expected_refs": [],
+    "expected_text": [],
+    "should_refuse": true,
+    "type": "out of corpus",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "No passage in the corpus is a close enough match to answer that. Try rephrasing, or check whether these 34 proposals cover the topic.",
+    "retrieved": [
+      "FP171:7",
+      "FP154:96",
+      "FP109:57",
+      "FP084:38",
+      "FP233:45",
+      "FP004:35"
+    ],
+    "refs_seen": [
+      "FP004",
+      "FP084",
+      "FP109",
+      "FP154",
+      "FP171",
+      "FP233"
+    ],
+    "recall": 0.0,
+    "rr": 0.0,
+    "rank": null,
+    "coverage": null,
+    "missing_refs": [],
+    "cited": [],
+    "invented": [],
+    "off_target": [],
+    "refused": true,
+    "refusal_correct": true,
+    "missing_expected_text": []
+  }
+]
