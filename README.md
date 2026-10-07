@@ -1,7 +1,7 @@
 # GCF Funding Proposal Assistant
 
-**A retrieval system over 34 Green Climate Fund funding proposals — 3,204 pages of
-project documentation — that answers questions in natural language and cites every
+**A retrieval system over 34 Green Climate Fund funding proposals**, 3,204 pages of
+project documentation, that answers questions in natural language and cites every
 claim to a document and page you can click through to verify.**
 
 🔗 **[Live demo](#)** · 34 proposals · 18 countries · $1.50B in approved climate finance
@@ -15,9 +15,7 @@ differ in their approach to flood risk?"* has no way to answer it except by read
 documents end to end. Keyword search fails because the proposals say *"dry-season water
 deficit"* where the analyst types *"water running out in summer."*
 
-This system answers that class of question in seconds, and — more importantly — makes the
-answer checkable. Every factual claim carries a `[FP272, p.15]` label that links straight
-to page 15 of the original PDF.
+This system answers that class of question in seconds, and  makes the answer checkable. Every factual claim carries a `[FP272, p.15]` label that links straight to page 15 of the original PDF.
 
 ---
 
