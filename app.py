@@ -20,15 +20,22 @@ try:
 except Exception:
     pass
 
+# (button label, question, document to scope to or None)
+# "Flood defences" is pinned to FP272 deliberately. Unfiltered, select_pages
+# gives each matched document one seat, so the search returns six proposals at
+# one page each and never reaches FP272 p.11 -- the only page in the corpus that
+# weighs these options against each other. Breadth across documents costs depth
+# within one; this question needs depth.
 EXAMPLES = [
     ("Protect rice fields",
-     "How are rice fields protected from climate impacts?"),
+     "How are rice fields protected from climate impacts?", None),
     ("Dry-season water",
-     "How do they stop water running out during the dry season?"),
+     "How do they stop water running out during the dry season?", None),
     ("Flood defences",
-     "Why were early warning systems chosen over structural flood defences?"),
+     "Why were early warning systems chosen over structural flood defences?",
+     "FP272"),
     ("Capital of Brazil",
-     "What is the capital of Brazil?"),
+     "What is the capital of Brazil?", None),
 ]
 
 
@@ -39,6 +46,10 @@ def manifest():
 
 m = manifest()
 PDF_URL = dict(zip(m["ref"], m["pdf_url"]))
+
+DOC_CHOICES = ["Any"] + [f"{r.ref} — {r.project_name[:48]}"
+                         for r in m.sort_values("ref").itertuples()]
+DOC_BY_REF = {label.split(" ")[0]: label for label in DOC_CHOICES[1:]}
 
 CITATION_RE = re.compile(r"\[(FP\d{3}),\s*((?:p\.)?\s*\d+(?:\s*,\s*(?:p\.)?\s*\d+)*)\]")
 
@@ -79,12 +90,19 @@ with tab_ask:
         st.caption("Applied before the search, not after — they narrow what is "
                    "searched rather than what is shown.")
 
+        doc_label = st.selectbox("Document", DOC_CHOICES, key="doc")
+        st.caption("Scoping to one proposal searches it in depth rather than "
+                   "spreading across the portfolio.")
+
         country = st.selectbox("Country", ["Any"] + sorted(m["country"].unique()))
         theme = st.selectbox("Theme", ["Any"] + sorted(m["theme"].unique()))
         size = st.selectbox("Project size", ["Any"] + sorted(m["project_size"].unique()))
         min_funding = st.slider("Minimum funding (US$m)", 0, 175, 0, step=5)
 
+        ref = None if doc_label == "Any" else doc_label.split(" ")[0]
+
         filters = {
+            "ref": ref,
             "country": None if country == "Any" else country,
             "theme": None if theme == "Any" else theme,
             "size": None if size == "Any" else size,
@@ -92,6 +110,8 @@ with tab_ask:
         }
 
         eligible = m.copy()
+        if filters["ref"]:
+            eligible = eligible[eligible["ref"] == filters["ref"]]
         if filters["country"]:
             eligible = eligible[eligible["country"] == filters["country"]]
         if filters["theme"]:
@@ -108,9 +128,14 @@ with tab_ask:
         st.session_state.question = ""
 
     cols = st.columns(len(EXAMPLES))
-    for col, (label, example) in zip(cols, EXAMPLES):
+    for col, (label, example, scope) in zip(cols, EXAMPLES):
         if col.button(label, use_container_width=True):
             st.session_state.question = example
+            st.session_state.doc = DOC_BY_REF.get(scope, "Any")
+            # The sidebar widget has already rendered this run, so writing its
+            # session_state key now would be ignored. Rerun so both widgets are
+            # built from the new values.
+            st.rerun()
 
     question = st.text_input("Question", key="question",
                              placeholder="e.g. how is climate risk assessed?",

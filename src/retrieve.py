@@ -16,6 +16,7 @@ COLLECTION = "gcf_proposals"
 
 TOP_K = 150
 MAX_PAGES = 6
+DIVERSITY_SLOTS = 4
 
 _page_cache = {}
 
@@ -57,8 +58,8 @@ def build_where(country=None, theme=None, size=None, ref=None, min_funding=None)
     return clauses[0] if len(clauses) == 1 else {"$and": clauses}
 
 
-def select_pages(candidates, max_pages):
-    """Guarantee every matched document a seat, then fill by distance.
+def select_pages(candidates, max_pages, diversity_slots=DIVERSITY_SLOTS):
+    """Reserve some slots for document diversity, fill the rest by distance.
 
     Plain distance ranking returned six pages from one proposal when asked to
     compare three -- the model cannot compare what it never sees.
@@ -71,12 +72,27 @@ def select_pages(candidates, max_pages):
     Guaranteeing one page per document gets the same coverage without
     displacing strong pages: pass 1 seats each document once, pass 2 fills
     every remaining slot by pure distance.
+
+    Capping pass 1 at diversity_slots is the later correction. With all six
+    slots reserved for diversity, a broad question matching six or more
+    documents filled every slot in pass 1, so pass 2 never ran and no document
+    could hold a second page. "Why were early warning systems chosen over
+    structural flood defences?" returned one page each from six proposals and
+    the model -- correctly -- said the passages did not explain a choice. FP272
+    p.11, which does explain it, scored 0.482 against an admitted page at 0.499
+    and was still excluded, because FP272 had already used its seat.
+
+    Four diversity slots still cover every cross-document question in the eval
+    (three Nepal proposals, four Tajikistan proposals), while the two free
+    slots let a document that genuinely holds the answer keep more of it.
+    Breadth and depth compete for the same six slots; this splits the budget
+    instead of giving it all to one.
     """
     ordered = sorted(candidates, key=lambda p: p["best_distance"])
 
     selected, seen_refs = [], set()
     for page in ordered:
-        if len(selected) >= max_pages:
+        if len(selected) >= diversity_slots:
             break
         if page["ref"] not in seen_refs:
             selected.append(page)
@@ -92,7 +108,8 @@ def select_pages(candidates, max_pages):
     return sorted(selected, key=lambda p: p["best_distance"])
 
 
-def retrieve(question, top_k=TOP_K, max_pages=MAX_PAGES, **filters):
+def retrieve(question, top_k=TOP_K, max_pages=MAX_PAGES,
+             diversity_slots=DIVERSITY_SLOTS, **filters):
     collection = get_collection()
     result = collection.query(
         query_texts=[question],
@@ -122,7 +139,7 @@ def retrieve(question, top_k=TOP_K, max_pages=MAX_PAGES, **filters):
         pages[key]["n_hits"] += 1
         pages[key]["chunk_ids"].append(chunk_id)
 
-    selected = select_pages(list(pages.values()), max_pages)
+    selected = select_pages(list(pages.values()), max_pages, diversity_slots)
     for page in selected:
         page["text"] = load_page(page["ref"], page["page"])
     return selected

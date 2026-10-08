@@ -37,8 +37,10 @@ Rules:
    never a reason to say the passages do not cover something.
 5. Reproduce figures exactly as they appear in the passages, character for
    character, including decimal points. Never reformat or round a number.
-6. If the question assumes a fact the passages contradict, say so. A question
-   about something the passages simply do not mention is not a false premise.
+6. If the question assumes a fact the passages contradict, say so, then state
+   what the passages do say instead and cite it. Rejecting a premise is never a
+   complete answer on its own. A question about something the passages simply do
+   not mention is not a false premise.
 7. Be concise. Two or three short paragraphs at most.
 8. You may compare, contrast and synthesise across the passages you were given.
    A comparison no single passage states is still a valid answer, provided every
