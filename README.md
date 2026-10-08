@@ -4,7 +4,7 @@
 project documentation, that answers questions in natural language and cites every
 claim to a document and page you can click through to verify.**
 
-🔗 **[Live demo](#)** · 34 proposals · 18 countries · $1.50B in approved climate finance
+🔗 **[Live demo](https://gcf-ragclimatefinancedocumentassistant.streamlit.app)** · 34 proposals · 18 countries · $1.50B in approved climate finance
 
 ---
 

@@ -1,4 +1,4 @@
-# Secrets
+
 .env
 .streamlit/secrets.toml
 
@@ -7,17 +7,8 @@
 __pycache__/
 *.py[cod]
 
-# Source PDFs -- 104MB, rebuildable with src/download.py from the manifest URLs
+
 documents/
-
-# Intermediate: 23MB, rebuildable with src/chunk.py. The vector index needs it
-# at build time only; the running app does not.
-data/chunks.jsonl
-
-# data/pages/ (12MB) and data/chroma/ (67MB) are DELIBERATELY COMMITTED --
-# the deployed app reads page text and vectors from them at runtime.
-
-# Scratch
 _to_delete/
 *.numbers
 .DS_Store
