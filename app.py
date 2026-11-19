@@ -127,15 +127,25 @@ with tab_ask:
     if "question" not in st.session_state:
         st.session_state.question = ""
 
+    def load_example(question, scope):
+        """Fill the question box and the document filter from an example button.
+
+        This has to be an on_click callback, not inline code. By the time the
+        button is evaluated, the sidebar selectbox with key="doc" has already
+        been instantiated this run, and Streamlit refuses any write to a widget
+        key after its widget exists -- StreamlitAPIException, not a silent
+        no-op, so an st.rerun() placed after the assignment never runs.
+
+        Callbacks execute before the next run builds its widgets, so both keys
+        are free to write here and the widgets pick the new values up.
+        """
+        st.session_state.question = question
+        st.session_state.doc = DOC_BY_REF.get(scope, "Any")
+
     cols = st.columns(len(EXAMPLES))
     for col, (label, example, scope) in zip(cols, EXAMPLES):
-        if col.button(label, use_container_width=True):
-            st.session_state.question = example
-            st.session_state.doc = DOC_BY_REF.get(scope, "Any")
-            # The sidebar widget has already rendered this run, so writing its
-            # session_state key now would be ignored. Rerun so both widgets are
-            # built from the new values.
-            st.rerun()
+        col.button(label, use_container_width=True,
+                   on_click=load_example, args=(example, scope))
 
     question = st.text_input("Question", key="question",
                              placeholder="e.g. how is climate risk assessed?",
